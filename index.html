@@ -1,79 +1,322 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>JENuine VISion</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
 
-    body{
+    *{
       margin:0;
-      font-family:Arial;
-      background:linear-gradient(to bottom,#ffb6e6,#ff69b4);
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:
+      radial-gradient(circle at top left,#ff8fd8 0%,transparent 30%),
+      radial-gradient(circle at top right,#ffb6f2 0%,transparent 25%),
+      linear-gradient(180deg,#ff5ebc 0%,#ff78c7 25%,#ff9bda 55%,#ffd1ef 100%);
       color:white;
-      text-align:center;
+      overflow-x:hidden;
     }
 
-    .container{
-      max-width:1000px;
+    .glow{
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#ffffff25;
+      border-radius:50%;
+      filter:blur(120px);
+      z-index:-1;
+    }
+
+    .glow1{
+      top:-150px;
+      left:-100px;
+    }
+
+    .glow2{
+      bottom:-200px;
+      right:-100px;
+    }
+
+    .navbar{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      backdrop-filter:blur(16px);
+      background:rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.15);
+    }
+
+    .nav-content{
+      max-width:1200px;
       margin:auto;
-      padding:40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 30px;
     }
 
-    h1{
-      font-size:75px;
-      margin-bottom:10px;
-      text-shadow:0 0 20px hotpink;
+    .logo{
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:1px;
     }
 
-    h2{
-      font-size:40px;
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      opacity:0.7;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 30px 80px;
+    }
+
+    .hero-content{
+      max-width:1200px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .hero-text h1{
+      font-size:90px;
+      line-height:0.95;
+      margin-bottom:25px;
+      font-weight:800;
+      text-shadow:0 0 25px rgba(255,255,255,0.35);
+    }
+
+    .hero-text p{
+      font-size:22px;
+      line-height:1.8;
+      opacity:0.95;
+      margin-bottom:35px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:12px 22px;
+      background:white;
+      color:#ff4db6;
+      border-radius:999px;
+      font-weight:700;
+      margin-bottom:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .buttons{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 28px;
+      border-radius:18px;
+      border:none;
+      font-size:17px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+    }
+
+    .btn-primary{
+      background:white;
+      color:#ff4db6;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-4px);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.12);
+      color:white;
+      border:1px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(10px);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.2);
+    }
+
+    .hero-image{
+      position:relative;
+    }
+
+    .hero-image img{
+      width:100%;
+      border-radius:40px;
+      box-shadow:0 25px 70px rgba(0,0,0,0.3);
+      border:2px solid rgba(255,255,255,0.2);
+    }
+
+    .floating-card{
+      position:absolute;
+      padding:18px 24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.14);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.2);
+      box-shadow:0 10px 35px rgba(0,0,0,0.15);
+      font-weight:600;
+    }
+
+    .card1{
+      top:-25px;
+      left:-25px;
+    }
+
+    .card2{
+      bottom:-25px;
+      right:-25px;
+    }
+
+    .section{
+      padding:110px 30px;
+    }
+
+    .section-container{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:60px;
       margin-bottom:15px;
     }
 
-    p{
+    .section-title p{
       font-size:22px;
+      opacity:0.9;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(14px);
+      border-radius:32px;
+      padding:35px;
+      transition:0.35s;
+      box-shadow:0 10px 35px rgba(0,0,0,0.12);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card h3{
+      font-size:30px;
+      margin-bottom:18px;
+    }
+
+    .card p{
+      line-height:1.9;
+      font-size:17px;
+      opacity:0.95;
+    }
+
+    .vote-section{
+      text-align:center;
+      padding:120px 30px;
+    }
+
+    .vote-box{
+      max-width:900px;
+      margin:auto;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:40px;
+      padding:70px 40px;
+      backdrop-filter:blur(16px);
+      box-shadow:0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    .vote-box h2{
+      font-size:70px;
+      margin-bottom:20px;
+    }
+
+    .vote-box p{
+      font-size:24px;
       line-height:1.8;
     }
 
-    .intro{
-      font-size:25px;
-      margin-bottom:40px;
-    }
-
-    .box{
-      background:rgba(255,255,255,0.15);
+    .footer{
+      text-align:center;
       padding:35px;
-      margin-top:30px;
-      border-radius:30px;
-      backdrop-filter:blur(8px);
-      box-shadow:0 0 20px rgba(255,255,255,0.3);
+      opacity:0.85;
+      font-size:15px;
     }
 
-    ul{
-      text-align:left;
-      display:inline-block;
-      font-size:22px;
-      line-height:2;
-    }
+    @media(max-width:950px){
 
-    img{
-      width:100%;
-      border-radius:30px;
-      margin-top:20px;
-      box-shadow:0 0 30px hotpink;
-    }
+      .hero-content{
+        grid-template-columns:1fr;
+      }
 
-    .vote{
-      margin-top:60px;
-      font-size:55px;
-      font-weight:bold;
-      text-shadow:0 0 15px white;
-    }
+      .hero-text h1{
+        font-size:65px;
+      }
 
-    .slogan{
-      font-size:35px;
-      margin-bottom:25px;
-      font-weight:bold;
+      .section-title h2{
+        font-size:45px;
+      }
+
+      .vote-box h2{
+        font-size:48px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
     }
 
   </style>
@@ -81,110 +324,185 @@
 
 <body>
 
-<div class="container">
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
 
-  <h1>💖 JENuine VISion 💖</h1>
+<nav class="navbar">
 
-  <div class="slogan">
-    Vote 4 Jeney and Vis 4 a JENuine VISion
+  <div class="nav-content">
+
+    <div class="logo">
+      💖 JENuine VISion
+    </div>
+
+    <div class="nav-links">
+      <a href="#mission">Mission</a>
+      <a href="#plans">Plans</a>
+      <a href="#vote">Vote</a>
+    </div>
+
   </div>
 
-  <p class="intro">
-    Running for Sophomore Caucus 2026
-  </p>
+</nav>
 
-  <!-- PUT YOUR POSTER LINK BELOW -->
-  <img src="PASTE YOUR IMGUR IMAGE LINK HERE">
+<section class="hero">
 
-  <div class="box">
+  <div class="hero-content">
 
-    <h2>Our Mission</h2>
+    <div class="hero-text">
+
+      <div class="badge">
+        Sophomore Caucus 2026
+      </div>
+
+      <h1>
+        Vote 4<br>
+        Jeney & Vis
+      </h1>
+
+      <p>
+        Building a more balanced, connected, and exciting sophomore experience at Stuyvesant High School.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#plans" class="btn btn-primary">
+          View Our Platform
+        </a>
+
+        <a href="#vote" class="btn btn-secondary">
+          June 3rd, 2026
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+
+      <!-- PUT YOUR IMAGE LINK BELOW -->
+      <img src="PASTE YOUR IMGUR IMAGE LINK HERE">
+
+      <div class="floating-card card1">
+        ✨ Community
+      </div>
+
+      <div class="floating-card card2">
+        💕 Wellness
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" id="mission">
+
+  <div class="section-container">
+
+    <div class="section-title">
+
+      <h2>Our Mission</h2>
+
+      <p>
+        A JENuine VISion for sophomore year.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <p>
+        At Stuyvesant High School, students can start to feel as if they’re going through a constant cycle of commuting, assignments, studying, and exams. This in turn burns them out a lot, since students focus more on surviving through the week. Our campaign is focused on transitioning into a more balanced, unified student life, making sure to keep both social and academic spirit alive.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" id="plans">
+
+  <div class="section-container">
+
+    <div class="section-title">
+
+      <h2>What We Plan To Do</h2>
+
+      <p>
+        Supporting both student wellness and academic success.
+      </p>
+
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <h3>🎉 Events & Community</h3>
+
+        <p>
+          We want to give sophomores something to look forward to post-big exams, so that students can decompress and build community. This can include big events like “are you smarter than a fifth grader nights?”, or playoff like sports competitions/field days (can take place inside the school or on the park outside).
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>✨ Wellness Improvements</h3>
+
+        <p>
+          Along with this, we want to create small improvements that will improve the sophomore experience. Practical little carts could be packed with tools that students could use to de-stress. We could also implement more accessible wellness supplies, such as first aid kits. Many students also pack food from home; therefore, supervised microwaves are also an improvement we are looking forward to (most likely either by the sophomore bar or the cafeteria).
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📚 Academic Support</h3>
+
+        <p>
+          We also want to improve student academic success by implementing feedback systems. This will be done by anonymous scheduled check-ins for both students and teachers to get an idea of workload, resources, opportunities, and experience, and then allow them to fairly accommodate.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>💕 Student Social Media Platform</h3>
+
+        <p>
+          Finally, a unified community is what will truly bring the sophomore student body together. We will build a student-run social media platform that reflects the sophomore experience and voices, with rotating members in charge of it so they don’t have to have all the work put on them. This page will include fun, relatable trends (like so called ‘music videos’ that give details of the month to come), as well as quick volunteer opportunities, study help, advice, and personality quizzes to help get to know the grade better!
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="vote-section" id="vote">
+
+  <div class="vote-box">
+
+    <h2>
+      VOTE JUNE 3RD 💖
+    </h2>
 
     <p>
-      At Stuyvesant High School, students can begin to feel trapped in a constant cycle of commuting,
-      assignments, studying, and exams. Our campaign focuses on creating a more balanced and unified
-      sophomore experience where both academic success and student life matter.
+      Vote 4 Jeney and Vis 4 a JENuine VISion
     </p>
 
   </div>
 
-  <div class="box">
+</section>
 
-    <h2>Events & Community 💕</h2>
-
-    <p>
-      We want sophomores to have exciting events to look forward to after stressful exams and heavy workloads.
-      Students deserve opportunities to decompress, have fun, and connect with each other.
-    </p>
-
-    <ul>
-      <li>“Are You Smarter Than a Fifth Grader?” nights</li>
-      <li>Sports playoffs & field days</li>
-      <li>School competitions and games</li>
-      <li>Community-building activities</li>
-    </ul>
-
-  </div>
-
-  <div class="box">
-
-    <h2>Wellness Improvements ✨</h2>
-
-    <p>
-      Small changes can make a huge difference in student life. We want to introduce practical improvements
-      that support student wellness and reduce stress throughout the school day.
-    </p>
-
-    <ul>
-      <li>Stress-relief carts</li>
-      <li>Accessible wellness supplies</li>
-      <li>More first aid kits</li>
-      <li>Supervised microwaves near the sophomore bar or cafeteria</li>
-    </ul>
-
-  </div>
-
-  <div class="box">
-
-    <h2>Academic Support 📚</h2>
-
-    <p>
-      Academic success should come with support and communication. We want students and teachers
-      to better understand workload, stress levels, and classroom experiences.
-    </p>
-
-    <ul>
-      <li>Anonymous student check-ins</li>
-      <li>Teacher feedback systems</li>
-      <li>Fairer accommodations</li>
-      <li>Improved communication between students and staff</li>
-    </ul>
-
-  </div>
-
-  <div class="box">
-
-    <h2>Student Social Media Platform 🎀</h2>
-
-    <p>
-      We want to create a student-run social media platform that represents the sophomore experience
-      and keeps students informed, connected, and involved.
-    </p>
-
-    <ul>
-      <li>Monthly “music video” updates</li>
-      <li>Volunteer opportunities</li>
-      <li>Study help and advice</li>
-      <li>Fun trends and relatable content</li>
-      <li>Personality quizzes and grade interaction</li>
-    </ul>
-
-  </div>
-
-  <div class="vote">
-    VOTE JUNE 3RD, 2026 💖
-  </div>
-
+<div class="footer">
+  Jeney Jyothi & Vismary Castillo — Sophomore Caucus 2026
 </div>
 
 </body>
